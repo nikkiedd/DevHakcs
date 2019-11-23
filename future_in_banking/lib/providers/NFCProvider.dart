@@ -4,8 +4,9 @@ class NFCProvider{
   static NFCProvider _provider;
 
   static NFCProvider GetProvider(){
-    if(_provider = null){
+    if(_provider == null){
       _provider = new NFCProvider();
+      _provider.Init();
     }
     return _provider;
   }

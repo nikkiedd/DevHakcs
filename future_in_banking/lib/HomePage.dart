@@ -18,7 +18,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Home"),
       ),
       body: Center(
-        child: Stack(children: <Widget>[
+        child: Column(children: <Widget>[
           FlatButton(child: Text("Read"), onPressed: () => Navigator.push(context,
               MaterialPageRoute(
                   builder: (context) => NFCReaderWidget()
