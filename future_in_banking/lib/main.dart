@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:future_in_banking/providers/OAuthProvider.dart';
 
 import 'HomePage.dart';
+import 'Onboarding/Onboarding.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: OnboardingPage(),
     );
   }
 }
