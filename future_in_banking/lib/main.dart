@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:future_in_banking/pages/ATMMap.dart';
 import 'package:future_in_banking/providers/OAuthProvider.dart';
 
+import 'HomePage.dart';
+import 'Onboarding/Onboarding.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -9,7 +12,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(),
 
       home: MyHomePage(),
@@ -32,5 +34,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return ATMMap();
+
   }
 }
