@@ -1,6 +1,6 @@
 import 'package:nfc_in_flutter/nfc_in_flutter.dart';
 class NFCProvider{
-  bool _supportsNFC;
+  bool _supportsNFC = false;
   static NFCProvider _provider;
 
   static NFCProvider GetProvider(){
@@ -11,25 +11,25 @@ class NFCProvider{
     return _provider;
   }
 
-  void Init() {
-    NFC.isNDEFSupported
-        .then((bool isSupported) {
-        _supportsNFC = isSupported;
-    });
+  Future Init() async {
+    _supportsNFC = await NFC.isNDEFSupported;
   }
 
-  void Write(){
+  Future<String> Write() async {
+    if(!_supportsNFC){
+      return "No NFC";
+    }
     NDEFMessage newMessage = NDEFMessage.withRecords(
        [NDEFRecord.text("hello world")]
     );
-    Stream<NDEFTag> stream = NFC.writeNDEF(newMessage, once: true);
-
-    stream.listen((NDEFTag tag) {
-      print("only wrote to one tag!");
-    });
+    NDEFTag tag = await NFC.writeNDEF(newMessage, once: true).first;
+    return tag.id;
   }
 
   Future<String> Read() async {
+    if(!_supportsNFC){
+      return "No NFC";
+    }
     NDEFMessage message = await NFC.readNDEF(once: true).first;
     return message.payload;
   }

@@ -8,9 +8,14 @@ class NFCWriterWidget extends StatefulWidget {
 }
 
 class _NFCWriterWidgettate extends State<NFCWriterWidget> {
+  String id = "";
 
   _sendData(){
-    NFCProvider.GetProvider().Write();
+    NFCProvider.GetProvider().Write().then((id) {
+      setState(() {
+        this.id = id;
+      });
+    });
   }
 
   @override
@@ -20,7 +25,10 @@ class _NFCWriterWidgettate extends State<NFCWriterWidget> {
           title: Text("Writer"),
         ),
         body: Center(
-          child: FlatButton(child: Text("Send"), onPressed: _sendData,),
+          child: Column(children: <Widget>[
+            FlatButton(child: Text("Send"), onPressed: _sendData,),
+            Text(id)
+          ],)
         )
     );
   }
